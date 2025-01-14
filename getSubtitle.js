@@ -17,8 +17,4 @@ async function convertAssToSrtFromUrl(url) {
 		console.error(error.message);
 	}
 }
-const output = await convertAssToSrtFromUrl(
-	"https://jimaku.cc/entry/715/download/%5BKitaujiSub&STYHSub&H-BBR%5D%20Oshi%20no%20Ko%20%5B01%5D%5BWebRip%5D%5BJPN%5D.ass",
-);
-console.log(output);
 export { convertAssToSrtFromUrl };
