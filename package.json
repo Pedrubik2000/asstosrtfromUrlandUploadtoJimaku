@@ -1,0 +1,20 @@
+{
+  "name": "asstovttjimaku",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "module",
+  "esModuleInterop": true,
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ass-to-srt": "^1.2.1",
+    "ass-to-vtt": "^1.2.0",
+    "express": "^4.21.2",
+    "subtitle-converter": "^3.0.12"
+  }
+}
