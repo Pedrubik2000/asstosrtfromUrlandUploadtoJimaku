@@ -1,27 +1,20 @@
-import path from "node:path";
 import fsp from "node:fs/promises";
-import asstosrt from "ass-to-srt";
-const DIRNAME = import.meta.dirname;
-const FILEPATH = path.join(
-	DIRNAME,
-	"/subtitles/[KitaujiSub&STYHSub&H-BBR] Oshi no Ko [01][WebRip][JPN].ass",
+import { convertAssToSrtFromUrl } from "./getSubtitle.js";
+const url =
+	"https://jimaku.cc/entry/715/download/%5BKitaujiSub&STYHSub&H-BBR%5D%20Oshi%20no%20Ko%20%5B02%5D%5BWebRip%5D%5BJPN%5D.ass";
+const srtSubtitle = await convertAssToSrtFromUrl(url);
+const parsedUrl = url.split("/");
+const appendExtension = "[convertedToSrt].srt";
+const filename = decodeURIComponent(
+	parsedUrl[parsedUrl.length - 1].replace(".ass", appendExtension),
 );
-console.log({ DIRNAME, FILEPATH });
-let assSubtitle;
-try {
-	assSubtitle = await fsp.readFile(FILEPATH, { encoding: "utf8" });
-	console.log(assSubtitle);
-} catch (err) {
-	console.log(err);
-}
-const srtSubtitle = asstosrt(assSubtitle);
-console.log(srtSubtitle);
+console.log(filename);
 
 const subtitleFormData = new FormData();
 subtitleFormData.append(
 	"file",
 	new Blob([srtSubtitle], { type: "text/srt" }),
-	"[KitaujiSub&STYHSub&H-BBR] Oshi no Ko [01][WebRip][JPN][converted].srt",
+	filename,
 );
 console.log(subtitleFormData);
 try {
